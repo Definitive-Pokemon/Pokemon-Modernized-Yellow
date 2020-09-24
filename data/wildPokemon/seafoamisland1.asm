@@ -9,6 +9,6 @@ IslandMons1:
 	db 30,SLOWPOKE
 	db 9,ZUBAT
 	db 27,GOLBAT
-	db 36,GOLBAT
+	db 36,JYNX
 	db $00
 

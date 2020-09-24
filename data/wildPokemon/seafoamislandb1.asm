@@ -9,6 +9,6 @@ IslandMonsB1:
 	db 18,ZUBAT
 	db 28,KINGLER
 	db 22,SEEL
-	db 26,SEEL
+	db 26,JYNX
 	db $00
 

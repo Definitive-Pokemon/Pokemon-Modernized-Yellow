@@ -5,11 +5,11 @@ IslandMonsB4:
 	db 30,KRABBY
 	db 32,KINGLER
 	db 28,SEEL
-	db 32,SEEL
+	db 32,JYNX
 	db 27,GOLBAT
 	db 45,ZUBAT
 	db 30,DEWGONG
-	db 34,DEWGONG
+	db 34,JYNX
 
 	db $05
 	db 25,TENTACOOL

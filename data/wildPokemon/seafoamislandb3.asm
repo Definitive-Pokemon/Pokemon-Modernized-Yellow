@@ -6,7 +6,7 @@ IslandMonsB3:
 	db 27,ZUBAT
 	db 30,KINGLER
 	db 26,SEEL
-	db 31,KRABBY
+	db 31,JYNX
 	db 30,SEEL
 	db 28,DEWGONG
 	db 32,DEWGONG

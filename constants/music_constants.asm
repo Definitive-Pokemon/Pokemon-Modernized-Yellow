@@ -1,293 +1,121 @@
-; HW sound channel register base addresses
-HW_CH1_BASE EQU (rNR10 % $100)
-HW_CH2_BASE EQU ((rNR21 % $100) - 1)
-HW_CH3_BASE EQU (rNR30 % $100)
-HW_CH4_BASE EQU ((rNR41 % $100) - 1)
+; song ids
+; Music indexes (see audio/music_pointers.asm)
+	const_def
 
-; HW sound channel enable bit masks
-HW_CH1_ENABLE_MASK EQU %00010001
-HW_CH2_ENABLE_MASK EQU %00100010
-HW_CH3_ENABLE_MASK EQU %01000100
-HW_CH4_ENABLE_MASK EQU %10001000
+	const MUSIC_NONE                         ; 00
+	const MUSIC_TITLE                        ; 01
+	const MUSIC_ROUTE_1                      ; 02
+	const MUSIC_ROUTE_3                      ; 03
+	const MUSIC_ROUTE_12                     ; 04
+	const MUSIC_MAGNET_TRAIN                 ; 05
+	const MUSIC_KANTO_GYM_LEADER_BATTLE      ; 06
+	const MUSIC_KANTO_TRAINER_BATTLE         ; 07
+	const MUSIC_KANTO_WILD_BATTLE            ; 08
+	const MUSIC_POKEMON_CENTER               ; 09
+	const MUSIC_HIKER_ENCOUNTER              ; 0a
+	const MUSIC_LASS_ENCOUNTER               ; 0b
+	const MUSIC_OFFICER_ENCOUNTER            ; 0c
+	const MUSIC_HEAL                         ; 0d
+	const MUSIC_LAVENDER_TOWN                ; 0e
+	const MUSIC_ROUTE_2                      ; 0f
+	const MUSIC_MT_MOON                      ; 10
+	const MUSIC_SHOW_ME_AROUND               ; 11
+	const MUSIC_GAME_CORNER                  ; 12
+	const MUSIC_BICYCLE                      ; 13
+	const MUSIC_HALL_OF_FAME                 ; 14
+	const MUSIC_VIRIDIAN_CITY                ; 15
+	const MUSIC_CELADON_CITY                 ; 16
+	const MUSIC_TRAINER_VICTORY              ; 17
+	const MUSIC_WILD_VICTORY                 ; 18
+	const MUSIC_GYM_VICTORY                  ; 19
+	const MUSIC_MT_MOON_SQUARE               ; 1a
+	const MUSIC_GYM                          ; 1b
+	const MUSIC_PALLET_TOWN                  ; 1c
+	const MUSIC_POKEMON_TALK                 ; 1d
+	const MUSIC_PROF_OAK                     ; 1e
+	const MUSIC_RIVAL_ENCOUNTER              ; 1f
+	const MUSIC_RIVAL_AFTER                  ; 20
+	const MUSIC_SURF                         ; 21
+	const MUSIC_EVOLUTION                    ; 22
+	const MUSIC_NATIONAL_PARK                ; 23
+	const MUSIC_CREDITS                      ; 24
+	const MUSIC_AZALEA_TOWN                  ; 25
+	const MUSIC_CHERRYGROVE_CITY             ; 26
+	const MUSIC_KIMONO_ENCOUNTER             ; 27
+	const MUSIC_UNION_CAVE                   ; 28
+	const MUSIC_JOHTO_WILD_BATTLE            ; 29
+	const MUSIC_JOHTO_TRAINER_BATTLE         ; 2a
+	const MUSIC_ROUTE_30                     ; 2b
+	const MUSIC_ECRUTEAK_CITY                ; 2c
+	const MUSIC_VIOLET_CITY                  ; 2d
+	const MUSIC_JOHTO_GYM_LEADER_BATTLE      ; 2e
+	const MUSIC_CHAMPION_BATTLE              ; 2f
+	const MUSIC_RIVAL_BATTLE                 ; 30
+	const MUSIC_ROCKET_BATTLE                ; 31
+	const MUSIC_PROF_ELM                     ; 32
+	const MUSIC_DARK_CAVE                    ; 33
+	const MUSIC_ROUTE_29                     ; 34
+	const MUSIC_ROUTE_36                     ; 35
+	const MUSIC_SS_AQUA                      ; 36
+	const MUSIC_YOUNGSTER_ENCOUNTER          ; 37
+	const MUSIC_BEAUTY_ENCOUNTER             ; 38
+	const MUSIC_ROCKET_ENCOUNTER             ; 39
+	const MUSIC_POKEMANIAC_ENCOUNTER         ; 3a
+	const MUSIC_SAGE_ENCOUNTER               ; 3b
+	const MUSIC_NEW_BARK_TOWN                ; 3c
+	const MUSIC_GOLDENROD_CITY               ; 3d
+	const MUSIC_VERMILION_CITY               ; 3e
+	const MUSIC_POKEMON_CHANNEL              ; 3f
+	const MUSIC_POKE_FLUTE_CHANNEL           ; 40
+	const MUSIC_TIN_TOWER                    ; 41
+	const MUSIC_SPROUT_TOWER                 ; 42
+	const MUSIC_BURNED_TOWER                 ; 43
+	const MUSIC_LIGHTHOUSE                   ; 44
+	const MUSIC_LAKE_OF_RAGE                 ; 45
+	const MUSIC_INDIGO_PLATEAU               ; 46
+	const MUSIC_ROUTE_37                     ; 47
+	const MUSIC_ROCKET_HIDEOUT               ; 48
+	const MUSIC_DRAGONS_DEN                  ; 49
+	const MUSIC_JOHTO_WILD_BATTLE_NIGHT      ; 4a
+	const MUSIC_RUINS_OF_ALPH_RADIO          ; 4b
+	const MUSIC_CAPTURE                      ; 4c
+	const MUSIC_ROUTE_26                     ; 4d
+	const MUSIC_MOM                          ; 4e
+	const MUSIC_VICTORY_ROAD                 ; 4f
+	const MUSIC_POKEMON_LULLABY              ; 50
+	const MUSIC_POKEMON_MARCH                ; 51
+	const MUSIC_GS_OPENING                   ; 52
+	const MUSIC_GS_OPENING_2                 ; 53
+	const MUSIC_MAIN_MENU                    ; 54
+	const MUSIC_RUINS_OF_ALPH_INTERIOR       ; 55
+	const MUSIC_ROCKET_OVERTURE              ; 56
+	const MUSIC_DANCING_HALL                 ; 57
+	const MUSIC_BUG_CATCHING_CONTEST_RANKING ; 58
+	const MUSIC_BUG_CATCHING_CONTEST         ; 59
+	const MUSIC_LAKE_OF_RAGE_ROCKET_RADIO    ; 5a
+	const MUSIC_PRINTER                      ; 5b
+	const MUSIC_POST_CREDITS                 ; 5c
 
-; HW sound channel disable bit masks
-HW_CH1_DISABLE_MASK EQU (~HW_CH1_ENABLE_MASK & $ff)
-HW_CH2_DISABLE_MASK EQU (~HW_CH2_ENABLE_MASK & $ff)
-HW_CH3_DISABLE_MASK EQU (~HW_CH3_ENABLE_MASK & $ff)
-HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
+; new to Crystal
+	const MUSIC_CLAIR                        ; 5d
+	const MUSIC_MOBILE_ADAPTER_MENU          ; 5e
+	const MUSIC_MOBILE_ADAPTER               ; 5f
+	const MUSIC_BUENAS_PASSWORD              ; 60
+	const MUSIC_MYSTICALMAN_ENCOUNTER        ; 61
+	const MUSIC_CRYSTAL_OPENING              ; 62
+	const MUSIC_BATTLE_TOWER_THEME           ; 63
+	const MUSIC_SUICUNE_BATTLE               ; 64
+	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
+	const MUSIC_MOBILE_CENTER                ; 66
+	const MUSIC_SAFARI_GATE                    ; 67
 
-REG_DUTY_SOUND_LEN  EQU 1
-REG_VOLUME_ENVELOPE EQU 2
-REG_FREQUENCY_LO    EQU 3
+; GetMapMusic picks music for this value (see home/map.asm)
+MUSIC_MAHOGANY_MART EQU $64
 
-MAX_SFX_ID_1 EQUS "SFX_SAFARI_ZONE_PA"
-MAX_SFX_ID_2 EQUS "SFX_SILPH_SCOPE"
-MAX_SFX_ID_3 EQUS "SFX_SHOOTING_STAR"
-MAX_SFX_ID_4 EQUS "SFX_GET_ITEM2_4_2 + 2"
+; ExitPokegearRadio_HandleMusic uses these values
+RESTART_MAP_MUSIC EQU $fe
+ENTER_MAP_MUSIC   EQU $ff
 
-NOISE_INSTRUMENTS_START EQUS "SFX_NOISE_INSTRUMENT01"
-NOISE_INSTRUMENTS_END   EQUS "SFX_NOISE_INSTRUMENT19 + 1"
-
-CRY_SFX_START EQUS "SFX_CRY_00"
-CRY_SFX_END   EQUS "SFX_CRY_25 + 3"
-
-BATTLE_SFX_START EQUS "SFX_PECK"
-BATTLE_SFX_END   EQUS "SFX_SILPH_SCOPE + 1"
-
-; wChannelFlags1 constants
-BIT_PERFECT_PITCH          EQU 0 ; controlled by toggle_perfect_pitch command
-BIT_SOUND_CALL             EQU 1 ; if in sound call
-BIT_NOISE_OR_SFX           EQU 2 ; if channel is the music noise channel or an SFX channel
-BIT_VIBRATO_DIRECTION      EQU 3 ; if the pitch is above or below normal (cycles)
-BIT_PITCH_SLIDE_ON         EQU 4 ; if pitch slide is active
-BIT_PITCH_SLIDE_DECREASING EQU 5 ; if the pitch slide frequency is decreasing (instead of increasing)
-BIT_ROTATE_DUTY_CYCLE      EQU 6 ; if rotating duty cycle
-
-; wChannelFlags2 constant (only has one flag)
-BIT_EXECUTE_MUSIC EQU 0 ; if in execute music
-
-; Song ids are calculated by address to save space.
-
-music_const: MACRO
-\1 EQUS "((\2 - SFX_Headers_1) / 3)"
-ENDM
-
-	; AUDIO_1
-	music_const MUSIC_PALLET_TOWN,         Music_PalletTown
-	music_const MUSIC_POKECENTER,          Music_Pokecenter
-	music_const MUSIC_GYM,                 Music_Gym
-	music_const MUSIC_CITIES1,             Music_Cities1
-	music_const MUSIC_CITIES2,             Music_Cities2
-	music_const MUSIC_CELADON,             Music_Celadon
-	music_const MUSIC_CINNABAR,            Music_Cinnabar
-	music_const MUSIC_VERMILION,           Music_Vermilion
-	music_const MUSIC_LAVENDER,            Music_Lavender
-	music_const MUSIC_SS_ANNE,             Music_SSAnne
-	music_const MUSIC_MEET_PROF_OAK,       Music_MeetProfOak
-	music_const MUSIC_MEET_RIVAL,          Music_MeetRival
-	music_const MUSIC_MUSEUM_GUY,          Music_MuseumGuy
-	music_const MUSIC_SAFARI_ZONE,         Music_SafariZone
-	music_const MUSIC_PKMN_HEALED,         Music_PkmnHealed
-	music_const MUSIC_ROUTES1,             Music_Routes1
-	music_const MUSIC_ROUTES2,             Music_Routes2
-	music_const MUSIC_ROUTES3,             Music_Routes3
-	music_const MUSIC_ROUTES4,             Music_Routes4
-	music_const MUSIC_INDIGO_PLATEAU,      Music_IndigoPlateau
-
-	; AUDIO_2
-	music_const MUSIC_GYM_LEADER_BATTLE,   Music_GymLeaderBattle
-	music_const MUSIC_TRAINER_BATTLE,      Music_TrainerBattle
-	music_const MUSIC_WILD_BATTLE,         Music_WildBattle
-	music_const MUSIC_FINAL_BATTLE,        Music_FinalBattle
-	music_const MUSIC_DEFEATED_TRAINER,    Music_DefeatedTrainer
-	music_const MUSIC_DEFEATED_WILD_MON,   Music_DefeatedWildMon
-	music_const MUSIC_DEFEATED_GYM_LEADER, Music_DefeatedGymLeader
-
-	; AUDIO_3
-	music_const MUSIC_TITLE_SCREEN,        Music_TitleScreen
-	music_const MUSIC_CREDITS,             Music_Credits
-	music_const MUSIC_HALL_OF_FAME,        Music_HallOfFame
-	music_const MUSIC_OAKS_LAB,            Music_OaksLab
-	music_const MUSIC_JIGGLYPUFF_SONG,     Music_JigglypuffSong
-	music_const MUSIC_BIKE_RIDING,         Music_BikeRiding
-	music_const MUSIC_SURFING,             Music_Surfing
-	music_const MUSIC_GAME_CORNER,         Music_GameCorner
-	music_const MUSIC_YELLOW_INTRO,        Music_YellowIntro
-	music_const MUSIC_DUNGEON1,            Music_Dungeon1
-	music_const MUSIC_DUNGEON2,            Music_Dungeon2
-	music_const MUSIC_DUNGEON3,            Music_Dungeon3
-	music_const MUSIC_CINNABAR_MANSION,    Music_CinnabarMansion
-	music_const MUSIC_POKEMON_TOWER,       Music_PokemonTower
-	music_const MUSIC_SILPH_CO,            Music_SilphCo
-	music_const MUSIC_MEET_EVIL_TRAINER,   Music_MeetEvilTrainer
-	music_const MUSIC_MEET_FEMALE_TRAINER, Music_MeetFemaleTrainer
-	music_const MUSIC_MEET_MALE_TRAINER,   Music_MeetMaleTrainer
-
-	; AUDIO_4
-	music_const MUSIC_SURFING_PIKACHU,     Music_SurfingPikachu
-	music_const MUSIC_MEET_JESSIE_JAMES,   Music_MeetJessieJames
-	music_const MUSIC_YELLOW_UNUSED_SONG,  Music_YellowUnusedSong
-	music_const MUSIC_GB_PRINTER,          Music_GBPrinter
-
-	; AUDIO_1 AUDIO_2 AUDIO_3 AUDIO_4
-	music_const SFX_NOISE_INSTRUMENT01, SFX_Noise_Instrument01_1
-	music_const SFX_NOISE_INSTRUMENT02, SFX_Noise_Instrument02_1
-	music_const SFX_NOISE_INSTRUMENT03, SFX_Noise_Instrument03_1
-	music_const SFX_NOISE_INSTRUMENT04, SFX_Noise_Instrument04_1
-	music_const SFX_NOISE_INSTRUMENT05, SFX_Noise_Instrument05_1
-	music_const SFX_NOISE_INSTRUMENT06, SFX_Noise_Instrument06_1
-	music_const SFX_NOISE_INSTRUMENT07, SFX_Noise_Instrument07_1
-	music_const SFX_NOISE_INSTRUMENT08, SFX_Noise_Instrument08_1
-	music_const SFX_NOISE_INSTRUMENT09, SFX_Noise_Instrument09_1
-	music_const SFX_NOISE_INSTRUMENT10, SFX_Noise_Instrument10_1
-	music_const SFX_NOISE_INSTRUMENT11, SFX_Noise_Instrument11_1
-	music_const SFX_NOISE_INSTRUMENT12, SFX_Noise_Instrument12_1
-	music_const SFX_NOISE_INSTRUMENT13, SFX_Noise_Instrument13_1
-	music_const SFX_NOISE_INSTRUMENT14, SFX_Noise_Instrument14_1
-	music_const SFX_NOISE_INSTRUMENT15, SFX_Noise_Instrument15_1
-	music_const SFX_NOISE_INSTRUMENT16, SFX_Noise_Instrument16_1
-	music_const SFX_NOISE_INSTRUMENT17, SFX_Noise_Instrument17_1
-	music_const SFX_NOISE_INSTRUMENT18, SFX_Noise_Instrument18_1
-	music_const SFX_NOISE_INSTRUMENT19, SFX_Noise_Instrument19_1
-	music_const SFX_CRY_00,             SFX_Cry00_1
-	music_const SFX_CRY_01,             SFX_Cry01_1
-	music_const SFX_CRY_02,             SFX_Cry02_1
-	music_const SFX_CRY_03,             SFX_Cry03_1
-	music_const SFX_CRY_04,             SFX_Cry04_1
-	music_const SFX_CRY_05,             SFX_Cry05_1
-	music_const SFX_CRY_06,             SFX_Cry06_1
-	music_const SFX_CRY_07,             SFX_Cry07_1
-	music_const SFX_CRY_08,             SFX_Cry08_1
-	music_const SFX_CRY_09,             SFX_Cry09_1
-	music_const SFX_CRY_0A,             SFX_Cry0A_1
-	music_const SFX_CRY_0B,             SFX_Cry0B_1
-	music_const SFX_CRY_0C,             SFX_Cry0C_1
-	music_const SFX_CRY_0D,             SFX_Cry0D_1
-	music_const SFX_CRY_0E,             SFX_Cry0E_1
-	music_const SFX_CRY_0F,             SFX_Cry0F_1
-	music_const SFX_CRY_10,             SFX_Cry10_1
-	music_const SFX_CRY_11,             SFX_Cry11_1
-	music_const SFX_CRY_12,             SFX_Cry12_1
-	music_const SFX_CRY_13,             SFX_Cry13_1
-	music_const SFX_CRY_14,             SFX_Cry14_1
-	music_const SFX_CRY_15,             SFX_Cry15_1
-	music_const SFX_CRY_16,             SFX_Cry16_1
-	music_const SFX_CRY_17,             SFX_Cry17_1
-	music_const SFX_CRY_18,             SFX_Cry18_1
-	music_const SFX_CRY_19,             SFX_Cry19_1
-	music_const SFX_CRY_1A,             SFX_Cry1A_1
-	music_const SFX_CRY_1B,             SFX_Cry1B_1
-	music_const SFX_CRY_1C,             SFX_Cry1C_1
-	music_const SFX_CRY_1D,             SFX_Cry1D_1
-	music_const SFX_CRY_1E,             SFX_Cry1E_1
-	music_const SFX_CRY_1F,             SFX_Cry1F_1
-	music_const SFX_CRY_20,             SFX_Cry20_1
-	music_const SFX_CRY_21,             SFX_Cry21_1
-	music_const SFX_CRY_22,             SFX_Cry22_1
-	music_const SFX_CRY_23,             SFX_Cry23_1
-	music_const SFX_CRY_24,             SFX_Cry24_1
-	music_const SFX_CRY_25,             SFX_Cry25_1
-
-	music_const SFX_GET_ITEM_2,         SFX_Get_Item2_1
-	music_const SFX_TINK,               SFX_Tink_1
-	music_const SFX_HEAL_HP,            SFX_Heal_HP_1
-	music_const SFX_HEAL_AILMENT,       SFX_Heal_Ailment_1
-	music_const SFX_START_MENU,         SFX_Start_Menu_1
-	music_const SFX_PRESS_AB,           SFX_Press_AB_1
-
-	; AUDIO_1 AUDIO_3 AUDIO_4
-	music_const SFX_GET_ITEM_1,         SFX_Get_Item1_1
-
-	; AUDIO_1 AUDIO_3
-	music_const SFX_POKEDEX_RATING,     SFX_Pokedex_Rating_1
-	music_const SFX_GET_KEY_ITEM,       SFX_Get_Key_Item_1
-	music_const SFX_POISONED,           SFX_Poisoned_1
-	music_const SFX_TRADE_MACHINE,      SFX_Trade_Machine_1
-	music_const SFX_TURN_ON_PC,         SFX_Turn_On_PC_1
-	music_const SFX_TURN_OFF_PC,        SFX_Turn_Off_PC_1
-	music_const SFX_ENTER_PC,           SFX_Enter_PC_1
-	music_const SFX_SHRINK,             SFX_Shrink_1
-	music_const SFX_SWITCH,             SFX_Switch_1
-	music_const SFX_HEALING_MACHINE,    SFX_Healing_Machine_1
-	music_const SFX_TELEPORT_EXIT_1,    SFX_Teleport_Exit1_1
-	music_const SFX_TELEPORT_ENTER_1,   SFX_Teleport_Enter1_1
-	music_const SFX_TELEPORT_EXIT_2,    SFX_Teleport_Exit2_1
-	music_const SFX_LEDGE,              SFX_Ledge_1
-	music_const SFX_TELEPORT_ENTER_2,   SFX_Teleport_Enter2_1
-	music_const SFX_FLY,                SFX_Fly_1
-	music_const SFX_DENIED,             SFX_Denied_1
-	music_const SFX_ARROW_TILES,        SFX_Arrow_Tiles_1
-	music_const SFX_PUSH_BOULDER,       SFX_Push_Boulder_1
-	music_const SFX_SS_ANNE_HORN,       SFX_SS_Anne_Horn_1
-	music_const SFX_WITHDRAW_DEPOSIT,   SFX_Withdraw_Deposit_1
-	music_const SFX_CUT,                SFX_Cut_1
-	music_const SFX_GO_INSIDE,          SFX_Go_Inside_1
-	music_const SFX_SWAP,               SFX_Swap_1
-	music_const SFX_59,                 SFX_59_1 ; unused, sounds similar to SFX_SLOTS_STOP_WHEEL
-	music_const SFX_PURCHASE,           SFX_Purchase_1
-	music_const SFX_COLLISION,          SFX_Collision_1
-	music_const SFX_GO_OUTSIDE,         SFX_Go_Outside_1
-	music_const SFX_SAVE,               SFX_Save_1
-
-	; AUDIO_1
-	music_const SFX_POKEFLUTE,          SFX_Pokeflute
-	music_const SFX_SAFARI_ZONE_PA,     SFX_Safari_Zone_PA
-
-	; AUDIO_2
-	music_const SFX_LEVEL_UP,           SFX_Level_Up
-
-	music_const SFX_BALL_TOSS,          SFX_Ball_Toss
-	music_const SFX_BALL_POOF,          SFX_Ball_Poof
-	music_const SFX_FAINT_THUD,         SFX_Faint_Thud
-	music_const SFX_RUN,                SFX_Run
-	music_const SFX_DEX_PAGE_ADDED,     SFX_Dex_Page_Added
-	music_const SFX_CAUGHT_MON,         SFX_Caught_Mon
-	music_const SFX_PECK,               SFX_Peck
-	music_const SFX_FAINT_FALL,         SFX_Faint_Fall
-	music_const SFX_BATTLE_09,          SFX_Battle_09
-	music_const SFX_POUND,              SFX_Pound
-	music_const SFX_BATTLE_0B,          SFX_Battle_0B
-	music_const SFX_BATTLE_0C,          SFX_Battle_0C
-	music_const SFX_BATTLE_0D,          SFX_Battle_0D
-	music_const SFX_BATTLE_0E,          SFX_Battle_0E
-	music_const SFX_BATTLE_0F,          SFX_Battle_0F
-	music_const SFX_DAMAGE,             SFX_Damage
-	music_const SFX_NOT_VERY_EFFECTIVE, SFX_Not_Very_Effective
-	music_const SFX_BATTLE_12,          SFX_Battle_12
-	music_const SFX_BATTLE_13,          SFX_Battle_13
-	music_const SFX_BATTLE_14,          SFX_Battle_14
-	music_const SFX_VINE_WHIP,          SFX_Vine_Whip
-	music_const SFX_BATTLE_16,          SFX_Battle_16 ; unused?
-	music_const SFX_BATTLE_17,          SFX_Battle_17
-	music_const SFX_BATTLE_18,          SFX_Battle_18
-	music_const SFX_BATTLE_19,          SFX_Battle_19
-	music_const SFX_SUPER_EFFECTIVE,    SFX_Super_Effective
-	music_const SFX_BATTLE_1B,          SFX_Battle_1B
-	music_const SFX_BATTLE_1C,          SFX_Battle_1C
-	music_const SFX_DOUBLESLAP,         SFX_Doubleslap
-	music_const SFX_BATTLE_1E,          SFX_Battle_1E
-	music_const SFX_HORN_DRILL,         SFX_Horn_Drill
-	music_const SFX_BATTLE_20,          SFX_Battle_20
-	music_const SFX_BATTLE_21,          SFX_Battle_21
-	music_const SFX_BATTLE_22,          SFX_Battle_22
-	music_const SFX_BATTLE_23,          SFX_Battle_23
-	music_const SFX_BATTLE_24,          SFX_Battle_24
-	music_const SFX_BATTLE_25,          SFX_Battle_25
-	music_const SFX_BATTLE_26,          SFX_Battle_26
-	music_const SFX_BATTLE_27,          SFX_Battle_27
-	music_const SFX_BATTLE_28,          SFX_Battle_28
-	music_const SFX_BATTLE_29,          SFX_Battle_29
-	music_const SFX_BATTLE_2A,          SFX_Battle_2A
-	music_const SFX_BATTLE_2B,          SFX_Battle_2B
-	music_const SFX_BATTLE_2C,          SFX_Battle_2C
-	music_const SFX_PSYBEAM,            SFX_Psybeam
-	music_const SFX_BATTLE_2E,          SFX_Battle_2E
-	music_const SFX_BATTLE_2F,          SFX_Battle_2F
-	music_const SFX_PSYCHIC_M,          SFX_Psychic_M
-	music_const SFX_BATTLE_31,          SFX_Battle_31
-	music_const SFX_BATTLE_32,          SFX_Battle_32
-	music_const SFX_BATTLE_33,          SFX_Battle_33
-	music_const SFX_BATTLE_34,          SFX_Battle_34
-	music_const SFX_BATTLE_35,          SFX_Battle_35
-	music_const SFX_BATTLE_36,          SFX_Battle_36
-	music_const SFX_SILPH_SCOPE,        SFX_Silph_Scope
-
-	; AUDIO_3
-	music_const SFX_INTRO_LUNGE,        SFX_Intro_Lunge
-	music_const SFX_INTRO_HIP,          SFX_Intro_Hip
-	music_const SFX_INTRO_HOP,          SFX_Intro_Hop
-	music_const SFX_INTRO_RAISE,        SFX_Intro_Raise
-	music_const SFX_INTRO_CRASH,        SFX_Intro_Crash
-	music_const SFX_INTRO_WHOOSH,       SFX_Intro_Whoosh
-	music_const SFX_SLOTS_STOP_WHEEL,   SFX_Slots_Stop_Wheel
-	music_const SFX_SLOTS_REWARD,       SFX_Slots_Reward
-	music_const SFX_SLOTS_NEW_SPIN,     SFX_Slots_New_Spin
-	music_const SFX_SHOOTING_STAR,      SFX_Shooting_Star
-
-	; AUDIO_4
-	music_const SFX_SURFING_JUMP,       SFX_Surfing_Jump
-	music_const SFX_SURFING_FLIP,       SFX_Surfing_Flip
-	music_const SFX_SURFING_CRASH,      SFX_Surfing_Crash
-	music_const SFX_UNKNOWN_802CC_4,    SFX_802cc_4
-	music_const SFX_SURFING_LAND,       SFX_Surfing_Land
-	music_const SFX_GET_ITEM2_4_2,      SFX_Get_Item2_4_2
+; GetMapMusic picks music for this bit flag
+RADIO_TOWER_MUSIC_F EQU 7
+RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F

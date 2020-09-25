@@ -1,12 +1,12 @@
 TradeMons:
 ; givemonster, getmonster, textstring, nickname (11 bytes), 14 bytes total
-	db LICKITUNG, DUGTRIO, 0,"GURIO@@@@@@"
+	db DUGTRIO, LICKITUNG, 0,"MARC@@@@@@@"
 	db CLEFAIRY,  MR_MIME, 0,"MILES@@@@@@"
 	db BUTTERFREE,BEEDRILL,2,"STINGER@@@@"
-	db KANGASKHAN,MUK,     0,"STICKY@@@@@"
+	db WEEZING,PORYGON,     0,"POLY@@@@@@"
 	db MEW,       MEW,     2,"BART@@@@@@@"
-	db TANGELA,   PARASECT,0,"SPIKE@@@@@@"
+	db MACHOKE,   HAUNTER,0,"SPIRI@@@@@@"
 	db PIDGEOT,   PIDGEOT, 1,"MARTY@@@@@@"
-	db GOLDUCK,   RHYDON,  1,"BUFFY@@@@@@"
-	db GROWLITHE, DEWGONG, 2,"CEZANNE@@@@"
+	db KADABRA,   GRAVELER,  1,"BUFFY@@@@@@"
+	db GROWLITHE, KADABRA, 2,"CEZANNE@@@@"
 	db CUBONE,    MACHOKE, 2,"RICKY@@@@@@"

@@ -335,11 +335,12 @@ NewBattle::
 	and a
 	ret
 
-; function to make bikes twice as fast as walking
+; originally a function that makes biking twice as fast
+; now also speeds up surfing
 DoBikeSpeedup::
 	ld a, [wWalkBikeSurfState]
-	dec a ; riding a bike?
-	ret nz
+	cp $00 ; value for walking state, see wram.asm
+	ret z
 	ld a, [wd736]
 	bit 6, a
 	ret nz

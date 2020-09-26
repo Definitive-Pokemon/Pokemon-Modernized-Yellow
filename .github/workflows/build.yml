@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
-        run: sudo apt-get install make gcc git python && sudo apt-get install byacc flex pkg-config libpng-dev && git clone https://github.com/rednex/rgbds && cd rgdbs && sudo make install && cd .. && cd pokeyellow && make
+        run: sudo apt-get install make gcc python && sudo apt-get install byacc flex pkg-config libpng-dev && git clone -b v0.4.1 --depth=1 https://github.com/gbdev/rgbds && cd rgdbs && sudo make -C rgbds install && cd .. && cd pokeyellow && make
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

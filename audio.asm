@@ -459,8 +459,6 @@ PlayBattleMusic::
 	jr c, .wildBattle
 	cp OPP_SONY3
 	jr z, .finalBattle
-	cp OPP_ROCKET
-	jr z, .rocketBattle
 	cp OPP_LANCE
 	jr nz, .normalTrainerBattle
 	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
@@ -470,9 +468,6 @@ PlayBattleMusic::
 	jr .playSong
 .finalBattle
 	ld a, MUSIC_FINAL_BATTLE
-	jr .playSong
-.rocketBattle
-	ld a, MUSIC_ROCKET_BATTLE
 	jr .playSong
 .wildBattle
 	ld a, MUSIC_WILD_BATTLE

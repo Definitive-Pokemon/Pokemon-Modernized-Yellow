@@ -18,3 +18,6 @@ Music_DefeatedWildMon::
 
 Music_DefeatedGymLeader::
 	audio_header Music_DefeatedGymLeader, Ch1, Ch2, Ch3
+
+Music_RocketBattle::
+	audio_header Music_RocketBattle, Ch1, Ch2, Ch3

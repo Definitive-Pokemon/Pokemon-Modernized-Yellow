@@ -359,7 +359,7 @@ DoubleSpeedConditionally::
 	ret
 .checkIfRunning
 	ld a, [hJoyHeld]
-	cp B_BUTTON
+	and B_BUTTON
 	jr z, .applyDoubleSpeed
 	ret ; player was not holding the run button: dont apply extra speed.
 

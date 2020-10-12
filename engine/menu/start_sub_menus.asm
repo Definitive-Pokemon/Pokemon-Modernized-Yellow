@@ -325,9 +325,9 @@ StartMenu_Item:
 	jr .exitMenu
 .notInCableClubRoom
 	ld hl, wListPointer
-	ld [hl], wNumBagItems & $ff
+	ld [hl], wNumBoxItems & $ff
 	inc hl
-	ld [hl], wNumBagItems / $100 ; store item bag pointer in wListPointer (for DisplayListMenuID)
+	ld [hl], wNumBoxItems / $100 ; store item bag pointer in wListPointer (for DisplayListMenuID)
 	xor a
 	ld [wPrintItemPrices], a
 	ld a, ITEMLISTMENU
@@ -449,7 +449,7 @@ StartMenu_Item:
 	inc a
 	jr z, .tossZeroItems
 .skipAskingQuantity
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call TossItem
 .tossZeroItems
 	jp ItemMenuLoop

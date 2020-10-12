@@ -599,7 +599,7 @@ ItemUseBall:
 	ret nz ; if so, don't remove a ball from the bag
 
 ; Remove a ball from the bag.
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	inc a
 	ld [wItemQuantity], a
 	jp RemoveItemFromInventory
@@ -832,7 +832,7 @@ ItemUseEvoStone:
 	callab TryEvolvingMon ; try to evolve pokemon
 	pop af
 	ld [wWhichPokemon], a
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, 1 ; remove 1 stone
 	ld [wItemQuantity], a
 	jp RemoveItemFromInventory
@@ -2588,7 +2588,7 @@ PrintItemUseTextAndRemoveItem:
 	call WaitForTextScrollButtonPress ; wait for button press
 
 RemoveUsedItem:
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, 1 ; one item
 	ld [wItemQuantity], a
 	jp RemoveItemFromInventory
@@ -2864,7 +2864,7 @@ GetSelectedMoveOffset2:
 
 ; confirms the item toss and then tosses the item
 ; INPUT:
-; hl = address of inventory (either wNumBagItems or wNumBoxItems)
+; hl = address of inventory (either wNumBoxItems or wNumBagItems)
 ; [wcf91] = item ID
 ; [wWhichPokemon] = index of item within inventory
 ; [wItemQuantity] = quantity to toss

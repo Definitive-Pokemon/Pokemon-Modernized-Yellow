@@ -116,7 +116,7 @@ AccessedMyPCText:
 
 ; removes one of the specified item ID [hItemToRemoveID] from bag (if existent)
 RemoveItemByID:
-	ld hl, wBagItems
+	ld hl, wBoxItems
 	ld a, [hItemToRemoveID]
 	ld b, a
 	xor a
@@ -137,5 +137,5 @@ RemoveItemByID:
 	ld [wItemQuantity], a
 	ld a, [hItemToRemoveIndex]
 	ld [wWhichPokemon], a
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	jp RemoveItemFromInventory

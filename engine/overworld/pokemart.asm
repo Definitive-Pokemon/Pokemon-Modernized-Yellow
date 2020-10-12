@@ -44,7 +44,7 @@ DisplayPokemartDialogue_:
 	ld [wInitListType], a
 	callab InitList
 
-	ld a, [wNumBagItems]
+	ld a, [wNumBoxItems]
 	and a
 	jp z, .bagEmpty
 	ld hl, PokemonSellingGreetingText
@@ -55,7 +55,7 @@ DisplayPokemartDialogue_:
 	ld a, MONEY_BOX
 	ld [wTextBoxID], a
 	call DisplayTextBoxID ; draw money text box
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, l
 	ld [wListPointer], a
 	ld a, h
@@ -107,7 +107,7 @@ DisplayPokemartDialogue_:
 	ld [wBoughtOrSoldItemInMart], a
 .skipSettingFlag1
 	call AddAmountSoldToMoney
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call RemoveItemFromInventory
 	jp .sellMenuLoop
 .unsellableItem
@@ -180,7 +180,7 @@ DisplayPokemartDialogue_:
 .buyItem
 	call .isThereEnoughMoney
 	jr c, .notEnoughMoney
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call AddItemToInventory
 	jr nc, .bagFull
 	call SubtractAmountPaidFromMoney

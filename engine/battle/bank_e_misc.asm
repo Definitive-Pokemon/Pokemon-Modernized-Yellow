@@ -77,7 +77,7 @@ InitList:
 .notMonster
 	cp INIT_BAG_ITEM_LIST
 	jr nz, .notBag
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld de, ItemNames
 	ld a, ITEM_NAME
 	jr .done

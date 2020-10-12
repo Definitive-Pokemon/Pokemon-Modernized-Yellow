@@ -630,7 +630,7 @@ OaksLabScript22:
 	ret
 
 OaksLabScript_RemoveParcel:
-	ld hl, wBagItems
+	ld hl, wBoxItems
 	ld bc, 0
 .loop
 	ld a, [hli]
@@ -643,7 +643,7 @@ OaksLabScript_RemoveParcel:
 	jr .loop
 
 .foundParcel
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, c
 	ld [wWhichPokemon], a
 	ld a, 1

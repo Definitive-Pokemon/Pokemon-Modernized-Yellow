@@ -1395,7 +1395,7 @@ AddAmountSoldToMoney::
 
 ; function to remove an item (in varying quantities) from the player's bag or PC box
 ; INPUT:
-; HL = address of inventory (either wNumBagItems or wNumBoxItems)
+; HL = address of inventory (either wNumBoxItems or wNumBagItems)
 ; [wWhichPokemon] = index (within the inventory) of the item to remove
 ; [wItemQuantity] = quantity to remove
 RemoveItemFromInventory::
@@ -1404,7 +1404,7 @@ RemoveItemFromInventory::
 
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
-; HL = address of inventory (either wNumBagItems or wNumBoxItems)
+; HL = address of inventory (either wNumBoxItems or wNumBagItems)
 ; [wcf91] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
@@ -2163,7 +2163,7 @@ UseItem::
 
 ; confirms the item toss and then tosses the item
 ; INPUT:
-; hl = address of inventory (either wNumBagItems or wNumBoxItems)
+; hl = address of inventory (either wNumBoxItems or wNumBagItems)
 ; [wcf91] = item ID
 ; [wWhichPokemon] = index of item within inventory
 ; [wItemQuantity] = quantity to toss
@@ -4722,7 +4722,7 @@ GiveItem::
 	ld [wcf91], a
 	ld a, c
 	ld [wItemQuantity], a
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call AddItemToInventory
 	ret nc
 	call GetItemName

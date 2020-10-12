@@ -2406,7 +2406,7 @@ SimulatedInputBattleItemList:
 
 DisplayPlayerBag:
 	; get the pointer to player's bag when in a normal battle
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, l
 	ld [wListPointer], a
 	ld a, h

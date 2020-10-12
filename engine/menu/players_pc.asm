@@ -86,7 +86,7 @@ PlayerPCDeposit:
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wListScrollOffset], a
-	ld a, [wNumBagItems]
+	ld a, [wNumBoxItems]
 	and a
 	jr nz, .loop
 	ld hl, NothingToDepositText
@@ -95,7 +95,7 @@ PlayerPCDeposit:
 .loop
 	ld hl, WhatToDepositText
 	call PrintText
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	ld a, l
 	ld [wListPointer], a
 	ld a, h
@@ -119,14 +119,14 @@ PlayerPCDeposit:
 	cp $ff
 	jp z, .loop
 .next
-	ld hl, wNumBoxItems
+	ld hl, wNumBagItems
 	call AddItemToInventory
 	jr c, .roomAvailable
 	ld hl, NoRoomToStoreText
 	call PrintText
 	jp .loop
 .roomAvailable
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call RemoveItemFromInventory
 	call WaitForSoundToFinish
 	ld a, SFX_WITHDRAW_DEPOSIT
@@ -140,7 +140,7 @@ PlayerPCWithdraw:
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wListScrollOffset], a
-	ld a, [wNumBoxItems]
+	ld a, [wNumBagItems]
 	and a
 	jr nz, .loop
 	ld hl, NothingStoredText
@@ -149,7 +149,7 @@ PlayerPCWithdraw:
 .loop
 	ld hl, WhatToWithdrawText
 	call PrintText
-	ld hl, wNumBoxItems
+	ld hl, wNumBagItems
 	ld a, l
 	ld [wListPointer], a
 	ld a, h
@@ -173,14 +173,14 @@ PlayerPCWithdraw:
 	cp $ff
 	jp z, .loop
 .next
-	ld hl, wNumBagItems
+	ld hl, wNumBoxItems
 	call AddItemToInventory
 	jr c, .roomAvailable
 	ld hl, CantCarryMoreText
 	call PrintText
 	jp .loop
 .roomAvailable
-	ld hl, wNumBoxItems
+	ld hl, wNumBagItems
 	call RemoveItemFromInventory
 	call WaitForSoundToFinish
 	ld a, SFX_WITHDRAW_DEPOSIT
@@ -194,7 +194,7 @@ PlayerPCToss:
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wListScrollOffset], a
-	ld a, [wNumBoxItems]
+	ld a, [wNumBagItems]
 	and a
 	jr nz, .loop
 	ld hl, NothingStoredText
@@ -203,7 +203,7 @@ PlayerPCToss:
 .loop
 	ld hl, WhatToTossText
 	call PrintText
-	ld hl, wNumBoxItems
+	ld hl, wNumBagItems
 	ld a, l
 	ld [wListPointer], a
 	ld a, h

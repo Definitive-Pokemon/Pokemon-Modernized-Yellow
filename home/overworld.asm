@@ -340,7 +340,7 @@ NewBattle::
 DoubleSpeedConditionally::
 	ld a, [wWalkBikeSurfState]
 	cp $00 ; value for walking state, see wram.asm
-	jr nz, .checkIfRunning
+	jr z, .checkIfRunning
 .applyDoubleSpeed
 	ld a, [wd736]
 	bit 6, a
@@ -360,7 +360,7 @@ DoubleSpeedConditionally::
 .checkIfRunning
 	ld a, [hJoyHeld]
 	and B_BUTTON
-	jr z, .applyDoubleSpeed
+	jr nz, .applyDoubleSpeed
 	ret ; player was not holding the run button: dont apply extra speed.
 
 

@@ -11,7 +11,7 @@ IslandMonsB4:
 	db 30,DEWGONG
 	db 34,JYNX
 
-	db $05
+	db $03
 	db 25,TENTACOOL
 	db 30,TENTACOOL
 	db 20,TENTACOOL

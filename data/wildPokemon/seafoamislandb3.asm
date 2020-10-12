@@ -11,7 +11,7 @@ IslandMonsB3:
 	db 28,DEWGONG
 	db 32,DEWGONG
 
-	db $05
+	db $03
 	db 25,TENTACOOL
 	db 30,TENTACOOL
 	db 20,TENTACOOL

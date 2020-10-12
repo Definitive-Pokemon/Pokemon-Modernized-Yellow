@@ -11,7 +11,7 @@ Route21Mons:
 	db 19,PIDGEOTTO
 	db 15,PIDGEOTTO
 
-	db $05
+	db $03
 	db 5,TENTACOOL
 	db 10,TENTACOOL
 	db 15,TENTACOOL

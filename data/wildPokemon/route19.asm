@@ -1,7 +1,7 @@
 Route19Mons:
 	db $00
 
-	db $05
+	db $03
 	db 5,TENTACOOL
 	db 10,TENTACOOL
 	db 15,TENTACOOL

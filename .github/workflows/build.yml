@@ -13,8 +13,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build project # This would actually build your project, using zip for an example artifact
-        run: sudo apt-get install make gcc python && sudo apt-get install byacc bison flex pkg-config libpng-dev && git clone -b v0.4.1 --depth=1 https://github.com/gbdev/rgbds && sudo make -C rgbds install && make
+        
+      - name: Cache Build Environment
+        id: cache-build
+        uses: actions/cache@v2
+        with:
+          path: /usr
+          key: default-cache
+
+      - name: Prepare dependencies
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: sudo apt-get install make gcc python && sudo apt-get install byacc bison flex pkg-config libpng-dev && git clone -b v0.4.1 --depth=1 https://github.com/gbdev/rgbds
+        
+      - name: Build project
+        run: sudo make -C rgbds install && make
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

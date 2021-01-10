@@ -23,10 +23,14 @@ jobs:
 
       - name: Prepare dependencies
         if: steps.cache-build.outputs.cache-hit != 'true'
-        run: sudo apt-get install make gcc python && sudo apt-get install byacc bison flex pkg-config libpng-dev && git clone -b v0.4.1 --depth=1 https://github.com/gbdev/rgbds
+        run: |
+              sudo apt-get install make gcc python
+              sudo apt-get install byacc bison flex pkg-config libpng-dev
+              git clone -b v0.4.1 --depth=1 https://github.com/gbdev/rgbds
+              sudo make -C rgbds install
         
       - name: Build project
-        run: sudo make -C rgbds install && make
+        run:  make
         
       - name: Create Release
         id: create_release

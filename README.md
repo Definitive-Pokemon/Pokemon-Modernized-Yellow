@@ -1,34 +1,28 @@
-# Pokémon Yellow
+# Pokémon Yellow Final [ON INDEFINITE HIATUS]
 
-This is a disassembly of Pokémon Yellow.
+This is a hack/mod of Pokemon Yellow to make the game more fun and accesible. To set up the repository, see [**INSTALL.md**](INSTALL.md).
+Final saves are compatible with vanilla saves with a caveat: items from the bag may appear in the computer and vice versa.
 
-It builds the following rom:
+# Features 
+ - Increased speed of surfing
+ - Intro music of Blue/Red reinstated
+ - Decreased encounter rate while surfing
+ - 'Run button': Press B to walk faster
+ - Move effects changed and improved
+   - Specifically made Struggle hit any Pokemon regardless of typing, removing the advantage Ghosts and Rocks had.
+ - More balanced and diverse pokemon encounters
+   - The in-game NPC trades allow the player to obtain Pokemon that were unobtainable in the vanilla game.
+ - Team Rocket unique battle music
+ - Swapped the sizes of the Computer and Bag item storage: Players can now pick up most items and not worry about running out of inventory.
 
-* Pokemon Yellow (UE) [C][!].gbc  `md5: d9290db87b1f0a23b89f99ee4469e34b`
+# Status
+The project is on a halt since interest has been lost.
 
-To set up the repository, see [**INSTALL.md**](INSTALL.md).
-
-
-## See also
-
-* Disassembly of [**Pokémon Red/Blue**][pokered]
-* Disassembly of [**Pokémon Gold**][pokegold]
-* Disassembly of [**Pokémon Crystal**][pokecrystal]
-* Disassembly of [**Pokémon Pinball**][pokepinball]
-* Disassembly of [**Pokémon TCG**][poketcg]
-* Disassembly of [**Pokémon Ruby**][pokeruby]
-* Disassembly of [**Pokémon Fire Red**][pokefirered]
-* Disassembly of [**Pokémon Emerald**][pokeemerald]
-* Discord: [**pret**][Discord]
-* irc: **irc.freenode.net** [**#pret**][irc]
-
-[pokered]: https://github.com/pret/pokered
-[pokegold]: https://github.com/pret/pokegold
-[pokecrystal]: https://github.com/pret/pokecrystal
-[pokepinball]: https://github.com/pret/pokepinball
-[poketcg]: https://github.com/pret/poketcg
-[pokeruby]: https://github.com/pret/pokeruby
-[pokefirered]: https://github.com/pret/pokefirered
-[pokeemerald]: https://github.com/pret/pokeemerald
-[Discord]: https://discord.gg/d5dubZ3
-[irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
+## Planned Features
+ - 'Context HM usage' partially copied from [ShinPokeRed](https://github.com/jojobear13/shinpokered): would allow the player to simply press A on the overworld to get a prompt for HM usage like future games.
+ - NPC scripting:
+   - Firstly somehow making Yellow scripting understandable
+   - Adding rematches and new battles to the game:
+     - Possible Prof. Oak fight
+     - Rematches against Gym Leaders
+     - New Teams for the E4 and Champion when rematching
